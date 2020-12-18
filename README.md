@@ -1,5 +1,7 @@
 # cmdlib-fabric
 
+[![](https://jitpack.io/v/uten2c/cmdlib-fabric.svg)](https://jitpack.io/#uten2c/cmdlib-fabric)
+
 BrigadierのFabric-Kotlin用ラッパー
 
 ## プロジェクトに追加する
