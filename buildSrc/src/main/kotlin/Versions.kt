@@ -1,6 +1,6 @@
 object Minecraft {
-    const val version = "20w51a"
-    const val configVersion = "1.17-alpha.20.51.a"
+    const val version = "1.16.4"
+    const val configVersion = "1.16.4"
 }
 
 object Jetbrains {
@@ -22,6 +22,6 @@ object Fabric {
     }
 
     object Yarn {
-        const val version = "${Minecraft.version}+build.5"
+        const val version = "${Minecraft.version}+build.7"
     }
 }
