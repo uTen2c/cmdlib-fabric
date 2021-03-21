@@ -13,7 +13,8 @@ class CmdLib : ModInitializer {
         internal val commands = HashSet<Command>()
 
         @JvmStatic
-        internal fun registerCommand(dispatcher: CommandDispatcher<ServerCommandSource>, dedicated: Boolean) {
+        @Deprecated("Internal")
+        fun registerCommand(dispatcher: CommandDispatcher<ServerCommandSource>, dedicated: Boolean) {
             commands.forEach {
                 if (!it.dedicated) {
                     dispatcher.register(it.builder)

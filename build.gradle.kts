@@ -9,11 +9,10 @@ plugins {
 }
 
 base {
-    archivesBaseName = Project.modId
+    archivesBaseName = "cmdlib-fabric"
+    project.group = "dev.uten2c"
+    version = Project.version
 }
-
-project.group = Project.group
-version = Project.version
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -22,14 +21,7 @@ java {
 
 tasks.getByName<ProcessResources>("processResources") {
     filesMatching("fabric.mod.json") {
-        expand(
-            mutableMapOf(
-                "modId" to Project.modId,
-                "version" to Project.version,
-                "minecraft" to Minecraft.configVersion,
-                "loader" to Fabric.Loader.version
-            )
-        )
+        expand(mutableMapOf("version" to Project.version))
     }
 }
 
@@ -77,21 +69,18 @@ tasks.withType<KotlinCompile> {
 
 publishing {
     publications {
-        create("main", MavenPublication::class.java) {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.base.archivesBaseName
+            version = project.version.toString()
 
-            groupId = Project.group
-            artifactId = Project.modId.toLowerCase()
-            version = Project.version
-
-            artifact(remapJar) {
-                builtBy(remapJar)
-            }
-            artifact(sourcesJar) {
-                builtBy(remapSourcesJar)
-            }
+            from(components["java"])
+            artifact(sourcesJar)
         }
     }
     repositories {
-        mavenLocal()
+        maven {
+            url = uri("${System.getProperty("user.home")}/maven-repo")
+        }
     }
 }

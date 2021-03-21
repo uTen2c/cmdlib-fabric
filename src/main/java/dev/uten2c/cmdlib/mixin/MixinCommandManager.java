@@ -26,6 +26,7 @@ public class MixinCommandManager {
             )
     )
     private void fabric_addCommands(CommandManager.RegistrationEnvironment environment, CallbackInfo ci) {
-        CmdLib.registerCommand$cmdlib_fabric(dispatcher, environment == CommandManager.RegistrationEnvironment.DEDICATED);
+        //noinspection deprecation
+        CmdLib.registerCommand(dispatcher, environment == CommandManager.RegistrationEnvironment.DEDICATED);
     }
 }
