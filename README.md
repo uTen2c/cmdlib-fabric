@@ -1,6 +1,5 @@
+![Maven metadata URL](https://img.shields.io/maven-metadata/v?label=cmdlib-fabric&metadataUrl=http%3A%2F%2Futen2c.github.io%2Frepo%2Fdev%2Futen2c%2Fcmdlib-fabric%2Fmaven-metadata.xml)
 # cmdlib-fabric
-
-[![](https://jitpack.io/v/uten2c/cmdlib-fabric.svg)](https://jitpack.io/#uten2c/cmdlib-fabric)
 
 BrigadierのFabric-Kotlin用ラッパー
 
@@ -9,13 +8,13 @@ BrigadierのFabric-Kotlin用ラッパー
 Groovy DSL
 ```groovy
 repositories {
-    ... 
-    maven { url 'https://jitpack.io' }
+    ...
+    maven { url 'https://uten2c.github.io/repo/' }
 }
 
 dependencies {
     ... 
-    implementation 'com.github.uten2c:cmdlib-fabric:Tag'
+    implementation 'dev.uten2c:cmdlib-fabric:VERSION'
 }
 ```
 
@@ -23,11 +22,11 @@ Kotlin DSL
 ```kotlin
 repositories {
     ...
-    maven("https://jitpack.io")
+    maven("https://uten2c.github.io/repo/")
 }
 
 dependencies {
-    modImplementation("com.github.uten2c:cmdlib-fabric:Tag")
+    modImplementation("dev.uten2c:cmdlib-fabric:VERSION")
 }
 ```
 
