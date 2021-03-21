@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "${modId}",
+  "id": "cmdlib-fabric",
   "version": "${version}",
   "name": "CmdLib",
   "description": "",
