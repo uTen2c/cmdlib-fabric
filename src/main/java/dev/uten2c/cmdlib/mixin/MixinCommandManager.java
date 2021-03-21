@@ -23,7 +23,8 @@ public class MixinCommandManager {
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/mojang/brigadier/CommandDispatcher;findAmbiguities(Lcom/mojang/brigadier/AmbiguityConsumer;)V"
-            )
+            ),
+            remap = false
     )
     private void fabric_addCommands(CommandManager.RegistrationEnvironment environment, CallbackInfo ci) {
         //noinspection deprecation
