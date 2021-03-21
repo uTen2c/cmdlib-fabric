@@ -4,8 +4,11 @@ import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
+import com.mojang.brigadier.suggestion.Suggestions
+import com.mojang.brigadier.suggestion.SuggestionsBuilder
 import net.minecraft.command.argument.*
 import net.minecraft.server.command.ServerCommandSource
+import java.util.concurrent.CompletableFuture
 import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument as arg
 
 class CommandBuilder(private val builder: ArgumentBuilder<ServerCommandSource, *>) {
@@ -78,6 +81,13 @@ class CommandBuilder(private val builder: ArgumentBuilder<ServerCommandSource, *
         builder.executes {
             executes(CommandContext(it))
             0
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun suggests(suggests: (com.mojang.brigadier.context.CommandContext<ServerCommandSource>, SuggestionsBuilder) -> CompletableFuture<Suggestions>) {
+        if (builder is RequiredArgumentBuilder<*, *>) {
+            builder.suggests { context, builder -> suggests(context as com.mojang.brigadier.context.CommandContext<ServerCommandSource>, builder) }
         }
     }
 
