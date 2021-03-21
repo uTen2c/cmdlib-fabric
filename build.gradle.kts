@@ -74,8 +74,12 @@ publishing {
             artifactId = project.base.archivesBaseName
             version = project.version.toString()
 
-            from(components["java"])
-            artifact(sourcesJar)
+            artifact(remapJar) {
+                builtBy(remapJar)
+            }
+            artifact(sourcesJar) {
+                builtBy(remapSourcesJar)
+            }
         }
     }
     repositories {
