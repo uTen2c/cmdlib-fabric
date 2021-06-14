@@ -1,3 +1,3 @@
 object Project {
-    const val version = "1.16.5+2"
+    const val version = "1.17+1"
 }

@@ -15,8 +15,8 @@ base {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
 }
 
 tasks.getByName<ProcessResources>("processResources") {
@@ -26,17 +26,10 @@ tasks.getByName<ProcessResources>("processResources") {
 }
 
 repositories {
-    maven("http://maven.fabricmc.net") {
-        name = "Fabric"
-    }
-    maven("https://libraries.minecraft.net/") {
-        name = "Mojang"
-    }
     maven("https://kotlin.bintray.com/kotlinx/") {
         name = "KotlinX"
     }
-    jcenter()
-    mavenLocal()
+    mavenCentral()
 }
 
 fun DependencyHandlerScope.includeAndExpose(dep: Any) {
@@ -63,7 +56,7 @@ val sourcesJar = tasks.create<Jar>("sourcesJar") {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "16"
     }
 }
 

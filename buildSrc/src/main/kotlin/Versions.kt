@@ -1,12 +1,12 @@
 object Minecraft {
-    const val version = "1.16.5"
-    const val configVersion = "1.16.5"
+    const val version = "1.17"
+    const val configVersion = "1.17"
 }
 
 object Jetbrains {
 
     object Kotlin {
-        const val version = "1.4.21"
+        const val version = "1.5.10"
         const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
     }
 }
@@ -14,14 +14,14 @@ object Jetbrains {
 object Fabric {
 
     object Loader {
-        const val version = "0.11.1"
+        const val version = "0.11.5"
     }
 
     object Loom {
-        const val version = "0.5-SNAPSHOT"
+        const val version = "0.8-SNAPSHOT"
     }
 
     object Yarn {
-        const val version = "${Minecraft.version}+build.1"
+        const val version = "${Minecraft.version}+build.10"
     }
 }

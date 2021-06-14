@@ -11,6 +11,7 @@ import net.minecraft.server.command.ServerCommandSource
 import java.util.concurrent.CompletableFuture
 import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument as arg
 
+@Suppress("unused")
 class CommandBuilder(private val builder: ArgumentBuilder<ServerCommandSource, *>) {
 
     fun requires(permLevel: Int) {
@@ -34,17 +35,17 @@ class CommandBuilder(private val builder: ArgumentBuilder<ServerCommandSource, *
     fun boolean(name: String, child: Child) = next(arg(name, BoolArgumentType.bool()), child)
     fun color(name: String, child: Child) = next(arg(name, ColorArgumentType.color()), child)
     fun columnPos(name: String, child: Child) = next(arg(name, ColumnPosArgumentType.columnPos()), child)
-    fun compoundTag(name: String, child: Child) = next(arg(name, NbtCompoundTagArgumentType.nbtCompound()), child)
-    fun criteria(name: String, child: Child) = next(arg(name, ObjectiveCriteriaArgumentType.objectiveCriteria()), child)
+    fun nbtCompound(name: String, child: Child) = next(arg(name, NbtCompoundArgumentType.nbtCompound()), child)
+    fun scoreboardCriteria(name: String, child: Child) = next(arg(name, ScoreboardCriterionArgumentType.scoreboardCriterion()), child)
     fun dimension(name: String, child: Child) = next(arg(name, DimensionArgumentType.dimension()), child)
     fun double(name: String, min: Double = -1.7976931348623157E308, max: Double = 1.7976931348623157E308, child: Child) = next(arg(name, DoubleArgumentType.doubleArg(min, max)), child)
-    fun enchantment(name: String, child: Child) = next(arg(name, ItemEnchantmentArgumentType.itemEnchantment()), child)
+    fun enchantment(name: String, child: Child) = next(arg(name, EnchantmentArgumentType.enchantment()), child)
     fun entities(name: String, child: Child) = next(arg(name, EntityArgumentType.entities()), child)
     fun entity(name: String, child: Child) = next(arg(name, EntityArgumentType.entity()), child)
     fun entityAnchor(name: String, child: Child) = next(arg(name, EntityAnchorArgumentType.entityAnchor()), child)
     fun entitySummon(name: String, child: Child) = next(arg(name, EntitySummonArgumentType.entitySummon()), child)
     fun float(name: String, min:Float = -3.4028235E38f, max: Float = 3.4028235E38f, child: Child) = next(arg(name, FloatArgumentType.floatArg(min, max)), child)
-    fun function(name: String, child: Child) = next(arg(name, FunctionArgumentType.function()), child)
+    fun commandFunction(name: String, child: Child) = next(arg(name, CommandFunctionArgumentType.commandFunction()), child)
     fun gameProfile(name: String, child: Child) = next(arg(name, GameProfileArgumentType.gameProfile()), child)
     fun greedyString(name: String, child: Child) = next(arg(name, StringArgumentType.greedyString()), child)
     fun identifier(name: String, child: Child) = next(arg(name, IdentifierArgumentType.identifier()), child)
@@ -54,11 +55,11 @@ class CommandBuilder(private val builder: ArgumentBuilder<ServerCommandSource, *
     fun itemStack(name: String, child: Child) = next(arg(name, ItemStackArgumentType.itemStack()), child)
     fun long(name: String, min: Long = -9223372036854775807L, max: Long = 9223372036854775807L, child: Child) = next(arg(name, LongArgumentType.longArg(min, max)), child)
     fun message(name: String, child: Child) = next(arg(name, MessageArgumentType.message()), child)
-    fun mobEffect(name: String, child: Child) = next(arg(name, MobEffectArgumentType.mobEffect()), child)
+    fun statusEffect(name: String, child: Child) = next(arg(name, StatusEffectArgumentType.statusEffect()), child)
     fun nbtPath(name: String, child: Child) = next(arg(name, NbtPathArgumentType.nbtPath()), child)
-    fun objective(name: String, child: Child) = next(arg(name, ObjectiveArgumentType.objective()), child)
+    fun scoreboardObjective(name: String, child: Child) = next(arg(name, ScoreboardObjectiveArgumentType.scoreboardObjective()), child)
     fun operation(name: String, child: Child) = next(arg(name, OperationArgumentType.operation()), child)
-    fun particle(name: String, child: Child) = next(arg(name, ParticleArgumentType.particle()), child)
+    fun particleEffect(name: String, child: Child) = next(arg(name, ParticleEffectArgumentType.particleEffect()), child)
     fun player(name: String, child: Child) = next(arg(name, EntityArgumentType.player()), child)
     fun players(name: String, child: Child) = next(arg(name, EntityArgumentType.players()), child)
     fun rotation(name: String, child: Child) = next(arg(name, RotationArgumentType.rotation()), child)
@@ -67,7 +68,7 @@ class CommandBuilder(private val builder: ArgumentBuilder<ServerCommandSource, *
     fun scoreboardSlot(name: String, child: Child) = next(arg(name, ScoreboardSlotArgumentType.scoreboardSlot()), child)
     fun string(name: String, child: Child) = next(arg(name, StringArgumentType.string()), child)
     fun swizzle(name: String, child: Child) = next(arg(name, SwizzleArgumentType.swizzle()), child)
-    fun tag(name: String, child: Child) = next(arg(name, NbtTagArgumentType.nbtTag()), child)
+    fun nbtElement(name: String, child: Child) = next(arg(name, NbtElementArgumentType.nbtElement()), child)
     fun team(name: String, child: Child) = next(arg(name, TeamArgumentType.team()), child)
     fun testClass(name: String, child: Child) = next(arg(name, TestClassArgumentType.testClass()), child)
     fun testFunction(name: String, child: Child) = next(arg(name, TestFunctionArgumentType.testFunction()), child)

@@ -12,7 +12,8 @@ import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.Entity
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.NbtCompound
+import net.minecraft.nbt.NbtElement
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.recipe.Recipe
 import net.minecraft.scoreboard.ScoreboardCriterion
@@ -32,9 +33,10 @@ import java.util.*
 import java.util.function.Predicate
 import java.util.function.Supplier
 
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class CommandContext(private val context: CommandContext<ServerCommandSource>) {
 
-    val source = context.source
+    val source: ServerCommandSource = context.source
     val player: ServerPlayerEntity get() = source.player
 
     fun getAdvancement(name: String): Advancement = IdentifierArgumentType.getAdvancementArgument(context, name)
@@ -45,18 +47,18 @@ class CommandContext(private val context: CommandContext<ServerCommandSource>) {
     fun getBoolean(name: String): Boolean = BoolArgumentType.getBool(context, name)
     fun getColor(name: String): Formatting = ColorArgumentType.getColor(context, name)
     fun getColumnPos(name: String): ColumnPos = ColumnPosArgumentType.getColumnPos(context, name)
-    fun getCompoundTag(name: String): CompoundTag = NbtCompoundTagArgumentType.getCompoundTag(context, name)
-    fun getCriteria(name: String): ScoreboardCriterion = ObjectiveCriteriaArgumentType.getCriteria(context, name)
+    fun getNbtCompound(name: String): NbtCompound = NbtCompoundArgumentType.getNbtCompound(context, name)
+    fun getCriteria(name: String): ScoreboardCriterion = ScoreboardCriterionArgumentType.getCriterion(context, name)
     fun getDimension(name: String): ServerWorld = DimensionArgumentType.getDimensionArgument(context, name)
     fun getDouble(name: String): Double = DoubleArgumentType.getDouble(context, name)
-    fun getEnchantment(name: String): Enchantment = ItemEnchantmentArgumentType.getEnchantment(context, name)
+    fun getEnchantment(name: String): Enchantment = EnchantmentArgumentType.getEnchantment(context, name)
     fun getEntities(name: String): Collection<Entity> = EntityArgumentType.getEntities(context, name)
     fun getEntity(name: String): Entity = EntityArgumentType.getEntity(context, name)
     fun getEntityAnchor(name: String): EntityAnchorArgumentType.EntityAnchor = EntityAnchorArgumentType.getEntityAnchor(context, name)
     fun getEntitySummon(name: String): Identifier = EntitySummonArgumentType.getEntitySummon(context, name)
     fun getFloat(name: String): Float = FloatArgumentType.getFloat(context, name)
-    fun getFunctionOrTag(name: String): Pair<Identifier, Either<CommandFunction, Tag<CommandFunction>>> = FunctionArgumentType.getFunctionOrTag(context, name)
-    fun getFunctions(name: String): MutableCollection<CommandFunction> = FunctionArgumentType.getFunctions(context, name)
+    fun getFunctionOrTag(name: String): Pair<Identifier, Either<CommandFunction, Tag<CommandFunction>>> = CommandFunctionArgumentType.getFunctionOrTag(context, name)
+    fun getFunctions(name: String): MutableCollection<CommandFunction> = CommandFunctionArgumentType.getFunctions(context, name)
     fun getGameProfile(name: String): MutableCollection<GameProfile> = GameProfileArgumentType.getProfileArgument(context, name)
     fun getIdentifier(name: String): Identifier = IdentifierArgumentType.getIdentifier(context, name)
     fun getInteger(name: String): Int = IntegerArgumentType.getInteger(context, name)
@@ -65,11 +67,11 @@ class CommandContext(private val context: CommandContext<ServerCommandSource>) {
     fun getItemStack(name: String): ItemStackArgument = ItemStackArgumentType.getItemStackArgument(context, name)
     fun getLong(name: String): Long = LongArgumentType.getLong(context, name)
     fun getMessage(name: String): Text = MessageArgumentType.getMessage(context, name)
-    fun getMobEffect(name: String): StatusEffect = MobEffectArgumentType.getMobEffect(context, name)
+    fun getStatusEffect(name: String): StatusEffect = StatusEffectArgumentType.getStatusEffect(context, name)
     fun getNbtPath(name: String): NbtPathArgumentType.NbtPath = NbtPathArgumentType.getNbtPath(context, name)
-    fun getObjective(name: String): ScoreboardObjective = ObjectiveArgumentType.getObjective(context, name)
+    fun getObjective(name: String): ScoreboardObjective = ScoreboardObjectiveArgumentType.getObjective(context, name)
     fun getOperation(name: String): OperationArgumentType.Operation = OperationArgumentType.getOperation(context, name)
-    fun getParticle(name: String): ParticleEffect = ParticleArgumentType.getParticle(context, name)
+    fun getParticle(name: String): ParticleEffect = ParticleEffectArgumentType.getParticle(context, name)
     fun getPlayer(name: String): ServerPlayerEntity = EntityArgumentType.getPlayer(context, name)
     fun getPlayers(name: String): Collection<ServerPlayerEntity> = EntityArgumentType.getPlayers(context, name)
     fun getRecipe(name: String): Recipe<*> = IdentifierArgumentType.getRecipeArgument(context, name)
@@ -81,7 +83,7 @@ class CommandContext(private val context: CommandContext<ServerCommandSource>) {
     fun getScoreboardSlot(name: String) = ScoreboardSlotArgumentType.getScoreboardSlot(context, name)
     fun getString(name: String): String = StringArgumentType.getString(context, name)
     fun getSwizzle(name: String): EnumSet<Direction.Axis> = SwizzleArgumentType.getSwizzle(context, name)
-    fun getTag(name: String): net.minecraft.nbt.Tag = NbtTagArgumentType.getTag(context, name)
+    fun getNbtElement(name: String): NbtElement = NbtElementArgumentType.getNbtElement(context, name)
     fun getTeam(name: String): Team = TeamArgumentType.getTeam(context, name)
     fun getTestClass(name: String): String = TestClassArgumentType.getTestClass(context, name)
     fun getTestFunction(name: String): TestFunction = TestFunctionArgumentType.getFunction(context, name)
